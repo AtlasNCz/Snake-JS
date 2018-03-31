@@ -34,22 +34,20 @@ class Snake{
 				this.y++;
 				break;
 		}
-		if(this.x < 0){
+		if(this.x < 0)
 			if(solid_walls) this.dead = true;
-			else this.x = grid_size-1;
-		}else if(this.x > grid_size-1){
+			else 			this.x = grid_size-1;
+		else if(this.x > grid_size-1)
 			if(solid_walls) this.dead = true;
-			else this.x = 0;
-		}
-		if(this.y < 0){
+			else 			this.x = 0;
+		if(this.y < 0)
 			if(solid_walls) this.dead = true;
 			else this.y = grid_size-1;
-		}else if(this.y > grid_size-1){
+		else if(this.y > grid_size-1)
 			if(solid_walls) this.dead = true;
 			else this.y = 0;
-		}
 	}
-	eat(food){
+	eat(){
 		for(var i=0;i<food.length;i++){
 			if(food[i].x == this.x && this.y == food[i].y){
 				food.pop();
@@ -58,10 +56,12 @@ class Snake{
 		}
 		for(var i=1;i<this.length;i++){
 			if(this.parts[i].x == this.x && this.y == this.parts[i].y && this.length >2){
-				log("ate myself, im dead");
 				this.dead = true;
 			}
 		}
+	}
+	grow(){
+		this.parts.push(new Entity(this.parts[this.length-1].x,this.parts[this.length-1].y));
 	}
 	get length(){
 		return this.parts.length;
@@ -71,9 +71,6 @@ class Snake{
 			return;
 		}
 		this.direction = direction;
-	}
-	grow(){
-		this.parts.push(new Entity(this.parts[this.length-1].x,this.parts[this.length-1].y));
 	}
 	get x(){
 		return this.parts[0].x;

@@ -1,5 +1,4 @@
 function innit(){
-
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
 
@@ -43,17 +42,14 @@ function draw_sqr(x,y,color,length){
 }
 window.addEventListener("resize",resize_canvas);
 window.addEventListener("keydown",keydown);
-
 function loop(){
 	if(snake.dead){
 		start();
 		return;
 	}
 	ctx.clearRect(0,0,canvas.width,canvas.height);
-	//snake
 	snake.walk();
 	snake.eat(food);
-	//food
 	if(!food.length){
 		food.push(new Entity(parseInt(Math.random()*grid_size-1),parseInt(Math.random()*grid_size-1)));
 	}
@@ -61,7 +57,6 @@ function loop(){
 		draw_sqr(food[i].x,food[i].y,"yellow",sqr_size/2,sqr_size/2);
 	}
 	snake.draw();
-
 	setTimeout(loop,interval);
 }
 function keydown(e){
@@ -79,7 +74,4 @@ function keydown(e){
 			snake.facing = south;
 			break;
 	}
-}
-function log(a){
-	console.log(a);
 }
